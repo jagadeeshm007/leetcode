@@ -7,15 +7,13 @@ public:
             numsxor^=nums[i-1] ;
             nxor^=i ;
         }
+
         int Xor = numsxor ^ nxor;
-
-        cout<<Xor<<"\n";
-
         int lsb = 0;
         while( !(Xor & (1 << lsb)) ) {
             lsb++;
         }
-        cout<<lsb<<"\n";
+
         int numszero = 0, numsone = 0;
         int nzero = 0, none = 0;
         for(int i = 0 ; i < n ; i++ ) { 
