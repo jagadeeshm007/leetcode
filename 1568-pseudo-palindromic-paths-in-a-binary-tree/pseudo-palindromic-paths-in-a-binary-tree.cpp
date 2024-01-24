@@ -12,12 +12,18 @@
 class Solution {
 public:
     int c=0;
+    int gen(int pp,int mask){
+        return (pp & mask) ? (pp & ~mask) : (pp | mask);
+    }
+    int valid(int pp){
+        int bits =  __builtin_popcount(pp);
+        return (bits==1 || bits==0) ? 1 : 0;
+    }
     void dfs(TreeNode* root ,int pp){
-        if (!root) return; 
-        int mask = 1 << ((root->val) - 1);
-        pp = (pp & mask) ? (pp & ~mask) : (pp | mask) ;
+        if (!root) return;
+        pp = gen( pp , 1 << root->val );
         if (!root->left && !root->right) {
-            c+= ( __builtin_popcount(pp)==1 || __builtin_popcount(pp)==0) ? 1 : 0;
+            c += valid(pp);
             return;
         }
         if (root->left) dfs(root->left,pp);
