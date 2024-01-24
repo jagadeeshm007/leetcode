@@ -12,31 +12,19 @@
 class Solution {
 public:
     int c=0;
-    int valid(unordered_map<int,int> &mp) {
-        int ods = 0;
-        for(auto i : mp) {
-            if(i.second&1) ods++;
-            if(ods>1){
-                return 0;
-            }
-        }
-        return 1;
-    }
-    void dfs(TreeNode* root ,unordered_map<int,int>& mp){
-        mp[root->val]++;
-        if (!root) return;   
+    void dfs(TreeNode* root ,int pp){
+        if (!root) return; 
+        int mask = 1 << ((root->val) - 1);
+        pp = (pp & mask) ? (pp & ~mask) : (pp | mask) ;
         if (!root->left && !root->right) {
-            c+=valid(mp);
-            mp[root->val]--;
+            c+= ( __builtin_popcount(pp)==1 || __builtin_popcount(pp)==0) ? 1 : 0;
             return;
         }
-        if (root->left) dfs(root->left,mp);
-        if (root->right) dfs(root->right,mp);
-        mp[root->val]--;
+        if (root->left) dfs(root->left,pp);
+        if (root->right) dfs(root->right,pp);
     }
     int pseudoPalindromicPaths (TreeNode* root) {
-        unordered_map<int,int> mp;
-        dfs(root,mp);
+        dfs(root,0);
         return c;
     }
 };
