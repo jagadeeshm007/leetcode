@@ -22,15 +22,17 @@ public:
         }
         return 1;
     }
-    void dfs(TreeNode* root ,unordered_map<int,int> mp){
+    void dfs(TreeNode* root ,unordered_map<int,int>& mp){
         mp[root->val]++;
         if (!root) return;   
         if (!root->left && !root->right) {
             c+=valid(mp);
+            mp[root->val]--;
             return;
         }
         if (root->left) dfs(root->left,mp);
         if (root->right) dfs(root->right,mp);
+        mp[root->val]--;
     }
     int pseudoPalindromicPaths (TreeNode* root) {
         unordered_map<int,int> mp;
