@@ -2,17 +2,16 @@ class Solution {
 public:
     int maxSumAfterPartitioning(vector<int>& arr, int k) {
         int n = arr.size();
-        int dp[n+1],ans=0;
+        int dp[n+1],mx = 0;
         memset(dp, 0, sizeof(dp));
-        for(int i = n-1; i >= 0; i--){
-            int mx = arr[i] , m = min( i+k , n),j=i;
-            while( j < m ) {
-                mx = max(mx, arr[j]) ;
-                ans = max( ans , (j - i + 1) * mx + dp[j+1]);
-                j++;
+        for (int i = 1; i <= n; i++ ) {
+            mx=0;
+            for (int j = 1;j <= min(k, i); j++ ) {
+                mx = max(mx, arr[i - j]);
+                dp[i] = max( dp[i] , dp[i - j] + mx * j);
             }
-            dp[i] = ans;
         }
-        return ans;
+
+        return dp[n];
     }
 };
