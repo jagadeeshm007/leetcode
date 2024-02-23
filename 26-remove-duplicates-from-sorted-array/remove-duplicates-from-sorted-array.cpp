@@ -4,13 +4,9 @@ public:
         int n = nums.size() , j=1;
         for(int i = 1 ; i < n ; i++ ) {
             if(nums[i-1]!=nums[i]){
-                nums[j] = nums[i];
-                j++;
+                nums[j++] = nums[i];
             }
         }
-        for(int i = j ; i < n ; i ++){
-            nums.pop_back();
-        }
-        return nums.size();
+        return j;
     }
 };
