@@ -12,7 +12,6 @@ public:
                 if (i > end)
                     break;
                 nums[i] = nums[end];
-                nums[end] = val;
                 end--;
             }
         }
