@@ -33,7 +33,6 @@ public:
                 q = min(q,triangle[n][j] + minmin(triangle, n - 1, j,dp));
             }
         }
-        cout<<p<<" "<<q<<endl;
         return min(p, q);
     }
 };
