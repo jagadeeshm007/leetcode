@@ -1,7 +1,7 @@
 class Solution {
 public:
     bool isIsomorphic(string s, string t) {
-        int map[257] , visit[257];
+        int map[128] , visit[128];
         for(int i = 0 ; i<s.length();i++){
             if( map[s[i]] == 0) {
                 if(visit[t[i]] == 0) {
