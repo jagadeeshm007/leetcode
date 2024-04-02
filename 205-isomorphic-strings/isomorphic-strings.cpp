@@ -5,23 +5,17 @@ public:
             return false;
         }
         int arr[257],visit[257];
-        memset(arr,-1,sizeof(arr));
-
+        
         for(int i = 0 ; i<s.length();i++){
-
-            if(arr[s[i]] == -1){
-                if(visit[t[i] ] ==0){
-                    arr[s[i] ] = t[i] ;
-                    visit[t[i] ] = 1;
+            if(arr[s[i]] == 0) {
+                if(visit[t[i]] == 0) {
+                    arr[s[i]] = t[i] ;
+                    visit[t[i]] = 1;
                 }
-                else{
-                    return false;
-                }
-                
+                else return false;
             }
-            else if( (t[i] ) != arr[s[i] ] ){
-                    return false;
-                }
+            else if( t[i] != arr[s[i]] ) return false;
+
         }
         return true;
     }
