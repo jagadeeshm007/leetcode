@@ -4,17 +4,17 @@ public:
         if(s.length() != t.length()){
             return false;
         }
-        int arr[257],visit[257];
+        int map[257] , visit[257];
         
         for(int i = 0 ; i<s.length();i++){
-            if(arr[s[i]] == 0) {
+            if( map[s[i]] == 0) {
                 if(visit[t[i]] == 0) {
-                    arr[s[i]] = t[i] ;
-                    visit[t[i]] = 1;
+                    map[s[i]] = t[i] ;
+                    visit[t[i]]++;
                 }
                 else return false;
             }
-            else if( t[i] != arr[s[i]] ) return false;
+            else if( t[i] != map[s[i]] ) return false;
 
         }
         return true;
