@@ -1,24 +1,14 @@
 class Solution {
 public:
     string makeGood(string S) {
-        stack<char> st;
-
+        string st ="";
         for(auto it:S) {
-            if(!st.empty()){
-                if((islower(it) && toupper(it) == st.top()) || (isupper(it) && tolower(it) == st.top())){
-                    st.pop();
-                    continue;
-                }
+            if(!st.empty() && toupper(it) == toupper(st.back()) && it - st.back() !=0){
+                st.pop_back();
+                continue;
             }
-            st.push(it);
+            st.push_back(it);
         }
-
-        string ans ="";
-        while(!st.empty()){
-            ans = st.top() + ans;
-            st.pop();
-        }
-
-        return ans;
+        return st;
     }
 };
