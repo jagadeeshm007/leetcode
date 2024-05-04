@@ -2,7 +2,7 @@ class Solution {
 public:
     int romanToInt(string s) {
         int n = s.length();
-        map<char,int> symbols;
+        unordered_map<char,int> symbols;
         symbols['I'] = 1;symbols['V'] = 5;symbols['X'] = 10;symbols['L'] = 50;
         symbols['C'] = 100;symbols['D'] = 500;symbols['M'] = 1000;
         int ans = symbols[s[n-1]];
