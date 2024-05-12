@@ -34,7 +34,6 @@ public:
         }
         string q;
         for(int i=it-mx+1;i<it+mx;i++){
-            cout<<s[i];
             if(s[i]!='#') q+=s[i];
         }
 
