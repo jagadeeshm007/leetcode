@@ -1,22 +1,24 @@
 class Solution {
 public:
     long long sumDigitDifferences(vector<int>& nums) {
-        int arr[10][10];
-        long long n = nums.size(),ans=0;
-        for(int i=0;i<n;i++) {
-            int num = nums[i], j=0;
-            while(num){
-                arr[j++][num%10]++;
-                num/=10;
+        vector<vector<int>> v(10, vector<int>(10, 0));
+        long long ans=0;
+
+        for (int i = 0; i < nums.size(); i++) {
+            int tmp = nums[i],j=0;
+            while(tmp){
+                v[j++][tmp%10]++;
+                tmp/=10;
             }
         }
 
         for(int i=0;i<10;i++){
             for(int j=0;j<10;j++){
                 for(int k=0;k<10;k++){
-                    if (j != k) ans+= (arr[i][j] * arr[i][k]);
+                    if(j!=k) ans+= v[i][j]*v[i][k];
                 }
             }
+            
         }
 
         return ans/2;
