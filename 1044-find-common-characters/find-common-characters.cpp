@@ -20,14 +20,11 @@ public:
         }
 
         vector<string> ans;
-        string ap = "";
         for(int i=0;i<26;i++){
-            ap+=char('a'+i);
             while(p[i]){
-                ans.push_back(ap);
+                ans.push_back(string(1,'a'+i));
                 p[i]--;
             }
-            ap.pop_back();
         }
 
         return ans;
