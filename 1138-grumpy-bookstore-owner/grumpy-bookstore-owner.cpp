@@ -1,6 +1,8 @@
 class Solution {
 public:
     int maxSatisfied(vector<int>& customers, vector<int>& grumpy, int minutes) {
+        std::ios_base::sync_with_stdio(false);
+        std::cin.tie(NULL);
         int sm = 0, c = 0, fin = 0;
         for (int i = 0; i < minutes; i++) {
             if (grumpy[i])
