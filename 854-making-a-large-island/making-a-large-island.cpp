@@ -2,9 +2,8 @@ class Solution {
 public:
     int c=0;
     void marker(int i,int j,vector<vector<int>>& grid,int mrk){
-        if(i<0 || j<0 || i>=grid.size() || j>=grid.size() || grid[i][j]!=1){
-            return;
-        }
+        if(i<0 || j<0 || i>=grid.size() || j>=grid.size() || grid[i][j]!=1) return;
+
         grid[i][j] = 0;
         c++;
         marker(i+1,j,grid,mrk);
@@ -28,14 +27,13 @@ public:
                 }
             }
         }
-        cout<<grp.size()<<endl;
+        // Base cases
         if(grp.size()==1) return 1;
         if(grp.size()==2){
-            if(grp[2]==(n*n))
-                return grp[2];
+            if(grp[2]==(n*n)) return grp[2];
             return grp[2]+1;
         }
-
+        // Result computimg 
         int ans=0;
         for(int i=0;i<n;i++) {
             for(int j=0;j<n;j++) {
@@ -46,24 +44,11 @@ public:
                     if(i+1<n) s.insert(grid[i+1][j]);
                     if(j-1>=0) s.insert(grid[i][j-1]);
                     if(j+1<n) s.insert(grid[i][j+1]);
-                    for(auto it : s){
-                        cout<<it<<" ";
-                        tmp+=grp[it];
-                    }
-                    cout<<endl;
+                    for(auto it : s) tmp+=grp[it];
                 }
                 ans = max(ans,tmp);
             }
         }
-
-        // for(auto it:grid){
-        //     for(auto i:it){
-        //         cout<<i<<" ";
-        //     }
-        //     cout<<endl;
-        // }
-        // for(int i=2;i<mrk;i++) cout<<i<<" -> "<<grp[i]<<endl;
-
         return ans;
     }
 };
