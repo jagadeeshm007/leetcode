@@ -1,8 +1,8 @@
 class Solution {
 public:
     int myAtoi(string s) {
-        if(s == "-2147483648") return INT_MIN;
-        if(s == "2147483647") return INT_MAX;
+        //if(s == "-2147483648") return INT_MIN;
+        //if(s == "2147483647") return INT_MAX;
         int num=0,i=0;
         int mx = INT_MAX, mi = INT_MIN;
         int d=0,sg=0;
