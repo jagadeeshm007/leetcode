@@ -10,8 +10,7 @@ public:
         dfs(i,j+1,board);
         dfs(i,j-1,board);
     }
-    void solve(vector<vector<char>>& board) {
-        
+    void mark(vector<vector<char>>& board){
         int n=board.size(),m=board[0].size();
 
         for(int i=0;i<m;i++){
@@ -36,7 +35,9 @@ public:
                 dfs(n-1,i,board);
             }
         }
-
+    }
+    void convert(vector<vector<char>>& board){
+        int n=board.size(),m=board[0].size();
         for(int i=0;i<n;i++) {
             for(int j=0;j<m;j++){
                 if(board[i][j] == 'M'){
@@ -47,5 +48,9 @@ public:
                 }
             }
         }
+    }
+    void solve(vector<vector<char>>& board) {
+        mark(board);
+        convert(board);
     }
 };
