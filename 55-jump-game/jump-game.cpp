@@ -9,7 +9,7 @@ public:
         int p=0;
         for(int j=i+1;j<=i+nums[i];j++){
             if(j<=n) p = max(p,find(nums,j,n));
-            if(p) break;
+           if(p) break;
         }
         return dp[i]=p;
     }
