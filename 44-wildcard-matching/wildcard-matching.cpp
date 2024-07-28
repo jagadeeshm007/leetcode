@@ -2,18 +2,10 @@ class Solution {
 public:
     int dp[2001][2001];
     bool solve(int i,int j,string& s,string& p){
-        if(i>=s.length()){
-            if(j<p.length() && p[j]=='*') 
-                return solve(i,j+1,s,p);
-            else if(j<p.length() && p[j]!='*')
-                return false;
-
-            return true;
-        }
-
         if(j>=p.length())
-            return false;
-            
+            return i == s.length();
+        if(i>=s.length())
+            return (p[j]=='*') and solve(i,j+1,s,p);
         if(dp[i][j] != -1)
             return dp[i][j];
 
