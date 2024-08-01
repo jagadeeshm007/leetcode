@@ -1,16 +1,17 @@
 class Solution {
 public:
-    int dp[21][2003];
-    int solve(int i,int sum,vector<int>& nums, int target) {
-        if(i>=nums.size()){
-            if(sum == target) return 1;
-            else return 0;
-        }
-        if(dp[i][sum+1000] != -1 ) return dp[i][sum+1000];
-        return dp[i][sum+1000] = solve(i+1,sum-nums[i],nums,target) + solve(i+1,sum+nums[i],nums,target);
-    }
     int findTargetSumWays(vector<int>& nums, int target) {
-        memset(dp,-1,sizeof(dp));
-        return solve(0,0,nums,target);
+        int n = nums.size();
+        vector<vector<int>> dp(n + 1, vector<int>(2001, 0));
+        dp[0][1000] = 1;
+        for (int i = 1; i <= n; ++i) {
+            for (int sum = -1000; sum <= 1000; ++sum) {
+                if (dp[i - 1][sum + 1000] > 0) {
+                    dp[i][sum + nums[i - 1] + 1000] += dp[i - 1][sum + 1000];
+                    dp[i][sum - nums[i - 1] + 1000] += dp[i - 1][sum + 1000];
+                }
+            }
+        }
+        return dp[n][target + 1000];
     }
 };
